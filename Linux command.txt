@@ -1,0 +1,513 @@
+root@JARVIS:~# pwd
+/root
+root@JARVIS:~# ls -a
+ .               Brij.tar        file5.txt
+ ..              Brij.tar.gz     file6.txt
+ .bash_history   Brijesh         file7.txt
+ .bashrc         Questiion.txt   file8.txt
+ .cache          Question.txt    file9.txt
+ .config         doc             java_status.txt
+ .lesshst        file1.log      'ssh-keygen -t rsa -b 4096'
+ .local          file10.txt     'ssh-keygen -t rsa -b 4096.pub'
+ .motd_shown     file2.log       system_info.txt
+ .profile        file3.log       test.txt
+ .ssh            file4.txt       zeal.py
+root@JARVIS:~# mkdir linux-lab
+root@JARVIS:~# mkdir -p linux-lab/scripts
+root@JARVIS:~# mkdir -p linux-lab/logs
+root@JARVIS:~# mkdir -p linux-lab/backups
+root@JARVIS:~# pwd
+/root
+root@JARVIS:~# ls -a
+ .               .profile        file10.txt   java_status.txt
+ ..              .ssh            file2.log    linux-lab
+ .bash_history   Brij.tar        file3.log   'ssh-keygen -t rsa -b 4096'
+ .bashrc         Brij.tar.gz     file4.txt   'ssh-keygen -t rsa -b 4096.pub'
+ .cache          Brijesh         file5.txt    system_info.txt
+ .config         Questiion.txt   file6.txt    test.txt
+ .lesshst        Question.txt    file7.txt    zeal.py
+ .local          doc             file8.txt
+ .motd_shown     file1.log       file9.txt
+root@JARVIS:~# touch cd/linux-lab/server.txt
+touch: cannot touch 'cd/linux-lab/server.txt': No such file or directory
+root@JARVIS:~# touch ~/linux-lab/server.txt
+root@JARVIS:~# touch ~/linux-lab/application.log
+root@JARVIS:~# touch ~/linux-lab/notes.txt
+root@JARVIS:~# ls ~/linux-lab
+application.log  backups  logs  notes.txt  scripts  server.txt
+root@JARVIS:~# cd ~/linux-lab
+root@JARVIS:~/linux-lab# mv notes.txt students_note.txt
+root@JARVIS:~/linux-lab# ls
+application.log  backups  logs  scripts  server.txt  students_note.txt
+root@JARVIS:~/linux-lab# mv student_note.txt students_notes.txt
+mv: cannot stat 'student_note.txt': No such file or directory
+root@JARVIS:~/linux-lab# mv students_note.txt student_notes.txt
+root@JARVIS:~/linux-lab# ls
+application.log  backups  logs  scripts  server.txt  student_notes.txt
+root@JARVIS:~/linux-lab# cp server.txt ~/backups/
+cp: cannot create regular file '/root/backups/': Not a directory
+root@JARVIS:~/linux-lab# cp server.txt ~/linux-lab/backups/
+root@JARVIS:~/linux-lab# mv application.log ~/linux-lab/logs
+root@JARVIS:~/linux-lab# ls
+backups  logs  scripts  server.txt  student_notes.txt
+root@JARVIS:~/linux-lab# ls ~/linux-lab/backups
+server.txt
+root@JARVIS:~/linux-lab# ls ~/linux-lab/logs
+application.log
+root@JARVIS:~/linux-lab# ls
+backups  logs  scripts  server.txt  student_notes.txt
+root@JARVIS:~/linux-lab# rm student_notes.txt
+root@JARVIS:~/linux-lab# ls
+backups  logs  scripts  server.txt
+root@JARVIS:~/linux-lab# pwd
+/root/linux-lab
+root@JARVIS:~/linux-lab# ..cd
+..cd: command not found
+root@JARVIS:~/linux-lab# cd
+root@JARVIS:~# touch server-info.txt
+root@JARVIS:~# ls
+ Brij.tar        file1.log    file6.txt         server-info.txt
+ Brij.tar.gz     file10.txt   file7.txt        'ssh-keygen -t rsa -b 4096'
+ Brijesh         file2.log    file8.txt        'ssh-keygen -t rsa -b 4096.pub'
+ Questiion.txt   file3.log    file9.txt         system_info.txt
+ Question.txt    file4.txt    java_status.txt   test.txt
+ doc             file5.txt    linux-lab         zeal.py
+root@JARVIS:~# cat server-info.txt
+root@JARVIS:~# Server Name:Linux-server-01
+Server: command not found
+root@JARVIS:~# nano server-info.txt
+root@JARVIS:~# cat server-info.txt
+Server Name:Linux-Server-01
+Environment:Development
+Application:Web Application
+Port:8080
+Owner:DevOps Team
+root@JARVIS:~# head n -3 server-info.txt
+head: invalid trailing option -- 3
+Try 'head --help' for more information.
+root@JARVIS:~# head -n 3 server-info.txt
+Server Name:Linux-Server-01
+Environment:Development
+Application:Web Application
+root@JARVIS:~# tail -n 2 server-info.txt
+Port:8080
+Owner:DevOps Team
+root@JARVIS:~# wc server-info.txt
+  5   8 108 server-info.txt
+root@JARVIS:~# wc -l server-info.txt
+5 server-info.txt
+root@JARVIS:~# wc -w server-info.txt
+8 server-info.txt
+root@JARVIS:~# grep Server server-info.txt
+Server Name:Linux-Server-01
+root@JARVIS:~# nl server-info.txt
+     1  Server Name:Linux-Server-01
+     2  Environment:Development
+     3  Application:Web Application
+     4  Port:8080
+     5  Owner:DevOps Team
+root@JARVIS:~# touch deploy.sh
+root@JARVIS:~# ls -l deploy.sh
+-rw-r--r-- 1 root root 0 Aug 23 05:21 deploy.sh
+root@JARVIS:~# chmod +x deploy.sh
+root@JARVIS:~# ls -l deploy.sh
+-rwxr-xr-x 1 root root 0 Aug 23 05:21 deploy.sh
+root@JARVIS:~# chmod 750 deploy.sh
+root@JARVIS:~# ls -l deploy.sh
+-rwxr-x--- 1 root root 0 Aug 23 05:21 deploy.sh
+root@JARVIS:~# chmod o-rwx deploy.sh
+root@JARVIS:~# ls -l deploy.sh
+-rwxr-x--- 1 root root 0 Aug 23 05:21 deploy.sh
+root@JARVIS:~# chmod g-w deploy.sh
+root@JARVIS:~# ls -l deploy.sh
+-rwxr-x--- 1 root root 0 Aug 23 05:21 deploy.sh
+root@JARVIS:~# ps aux
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.0  0.1  21680 13160 ?        Ss   04:47   0:00 /sbin/init
+root           2  0.0  0.0   3180  2204 hvc0     Sl+  04:47   0:00 /init
+root           8  0.0  0.0   3196  2132 hvc0     Sl+  04:47   0:00 plan9 --control-socket 7 --l
+root          54  0.0  0.1  34048 12628 ?        S<s  04:47   0:00 /usr/lib/systemd/systemd-jou
+root         100  0.0  0.0  25548  6928 ?        Ss   04:47   0:00 /usr/lib/systemd/systemd-ude
+systemd+     162  0.0  0.1  21344 13152 ?        Ss   04:47   0:00 /usr/lib/systemd/systemd-res
+systemd+     166  0.0  0.0  91036  7996 ?        Ssl  04:47   0:00 /usr/lib/systemd/systemd-tim
+root         172  0.0  0.0   4244  2684 ?        Ss   04:47   0:00 /usr/sbin/cron -f -P
+message+     173  0.0  0.0   9544  5384 ?        Ss   04:47   0:00 @dbus-daemon --system --addr
+root         186  0.0  0.0  17980  8872 ?        Ss   04:47   0:00 /usr/lib/systemd/systemd-log
+syslog       207  0.0  0.0 222516  5964 ?        Ssl  04:47   0:00 /usr/sbin/rsyslogd -n -iNONE
+root         219  0.0  0.0   3124  1972 tty1     Ss+  04:47   0:00 /sbin/agetty -o -p -- \u --n
+root         220  0.0  0.1 107036 23144 ?        Ssl  04:47   0:00 /usr/bin/python3 /usr/share/
+root         317  0.0  0.0   3184  1108 ?        Ss   04:47   0:00 /init
+root         318  0.0  0.0   3200  1248 ?        S    04:47   0:00 /init
+root         319  0.0  0.0   6212  5512 pts/0    Ss   04:47   0:00 -bash
+root         320  0.0  0.0   6672  4496 pts/1    Ss   04:47   0:00 /bin/login -f
+root         364  0.0  0.0  20340 11524 ?        Ss   04:47   0:00 /usr/lib/systemd/systemd --u
+root         366  0.0  0.0  21172  3492 ?        S    04:47   0:00 (sd-pam)
+root         391  0.0  0.0   6080  5356 pts/1    S+   04:47   0:00 -bash
+root         613  0.0  0.0   8288  4312 pts/0    R+   05:34   0:00 ps aux
+root@JARVIS:~# pgrep sshd
+root@JARVIS:~# pidof sshd
+root@JARVIS:~# ^C
+root@JARVIS:~# sudo systemctl status ssh
+Unit ssh.service could not be found.
+root@JARVIS:~# sudo apt update && sudo apt install openssh-server -y
+Get:1 http://security.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+Hit:2 http://archive.ubuntu.com/ubuntu noble InRelease
+Get:3 http://security.ubuntu.com/ubuntu noble-security/main amd64 Packages [967 kB]
+Get:4 http://archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+Get:5 http://archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+Get:6 http://security.ubuntu.com/ubuntu noble-security/main Translation-en [205 kB]
+Get:7 http://security.ubuntu.com/ubuntu noble-security/main amd64 Components [46.4 kB]
+Get:8 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1201 kB]
+Get:9 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1227 kB]
+Get:10 http://security.ubuntu.com/ubuntu noble-security/universe Translation-en [240 kB]
+Get:11 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Components [76.3 kB]
+Get:12 http://security.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1385 kB]
+Get:13 http://security.ubuntu.com/ubuntu noble-security/restricted Translation-en [320 kB]
+Get:14 http://security.ubuntu.com/ubuntu noble-security/multiverse Translation-en [10.9 kB]
+Get:15 http://archive.ubuntu.com/ubuntu noble-updates/main Translation-en [286 kB]
+Get:16 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 Components [180 kB]
+Get:17 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1687 kB]
+Get:18 http://archive.ubuntu.com/ubuntu noble-updates/universe Translation-en [337 kB]
+Get:19 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 Components [388 kB]
+Get:20 http://archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [1483 kB]
+Get:21 http://archive.ubuntu.com/ubuntu noble-updates/restricted Translation-en [339 kB]
+Get:22 http://archive.ubuntu.com/ubuntu noble-updates/multiverse Translation-en [12.8 kB]
+Get:23 http://archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Components [940 B]
+Get:24 http://archive.ubuntu.com/ubuntu noble-backports/main amd64 Components [5772 B]
+Get:25 http://archive.ubuntu.com/ubuntu noble-backports/universe amd64 Components [12.6 kB]
+Fetched 10.8 MB in 3s (3911 kB/s)
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+18 packages can be upgraded. Run 'apt list --upgradable' to see them.
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following package was automatically installed and is no longer required:
+  libglapi-mesa
+Use 'sudo apt autoremove' to remove it.
+The following additional packages will be installed:
+  libwrap0 ncurses-term openssh-sftp-server ssh-import-id
+Suggested packages:
+  molly-guard monkeysphere ssh-askpass ufw
+The following NEW packages will be installed:
+  libwrap0 ncurses-term openssh-server openssh-sftp-server ssh-import-id
+0 upgraded, 5 newly installed, 0 to remove and 18 not upgraded.
+Need to get 882 kB of archives.
+After this operation, 6857 kB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 openssh-sftp-server amd64 1:9.6p1-3ubuntu13.18 [37.3 kB]
+Get:2 http://archive.ubuntu.com/ubuntu noble/main amd64 libwrap0 amd64 7.6.q-33 [47.9 kB]
+Get:3 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 openssh-server amd64 1:9.6p1-3ubuntu13.18 [511 kB]
+Get:4 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 ncurses-term all 6.4+20240113-1ubuntu2.1 [275 kB]
+Get:5 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 ssh-import-id all 5.11-0ubuntu2.24.04.1 [10.1 kB]
+Fetched 882 kB in 0s (1976 kB/s)
+Preconfiguring packages ...
+Selecting previously unselected package openssh-sftp-server.
+(Reading database ... 42937 files and directories currently installed.)
+Preparing to unpack .../openssh-sftp-server_1%3a9.6p1-3ubuntu13.18_amd64.deb ...
+Unpacking openssh-sftp-server (1:9.6p1-3ubuntu13.18) ...
+Selecting previously unselected package libwrap0:amd64.
+Preparing to unpack .../libwrap0_7.6.q-33_amd64.deb ...
+Unpacking libwrap0:amd64 (7.6.q-33) ...
+Selecting previously unselected package openssh-server.
+Preparing to unpack .../openssh-server_1%3a9.6p1-3ubuntu13.18_amd64.deb ...
+Unpacking openssh-server (1:9.6p1-3ubuntu13.18) ...
+Selecting previously unselected package ncurses-term.
+Preparing to unpack .../ncurses-term_6.4+20240113-1ubuntu2.1_all.deb ...
+Unpacking ncurses-term (6.4+20240113-1ubuntu2.1) ...
+Selecting previously unselected package ssh-import-id.
+Preparing to unpack .../ssh-import-id_5.11-0ubuntu2.24.04.1_all.deb ...
+Unpacking ssh-import-id (5.11-0ubuntu2.24.04.1) ...
+Setting up openssh-sftp-server (1:9.6p1-3ubuntu13.18) ...
+Setting up ssh-import-id (5.11-0ubuntu2.24.04.1) ...
+Setting up libwrap0:amd64 (7.6.q-33) ...
+Setting up ncurses-term (6.4+20240113-1ubuntu2.1) ...
+Setting up openssh-server (1:9.6p1-3ubuntu13.18) ...
+
+Creating config file /etc/ssh/sshd_config with new version
+Creating SSH2 RSA key; this may take some time ...
+3072 SHA256:NSTGX1lIBqUXHgXsfhpnxWHRSZhNJchlVcKgLgz/8gI root@JARVIS (RSA)
+Creating SSH2 ECDSA key; this may take some time ...
+256 SHA256:tbaTseYWlKiLKfYo/vkjgq4ymGzmL6gjbbUQKfvG0nQ root@JARVIS (ECDSA)
+Creating SSH2 ED25519 key; this may take some time ...
+256 SHA256:LKbVTvCLc7ZJ6LF+rX0whF54g/1XR346JgpO+F7NvuA root@JARVIS (ED25519)
+Created symlink /etc/systemd/system/sockets.target.wants/ssh.socket → /usr/lib/systemd/system/ssh.socket.
+Created symlink /etc/systemd/system/ssh.service.requires/ssh.socket → /usr/lib/systemd/system/ssh.socket.
+Processing triggers for man-db (2.12.0-4build2) ...
+Processing triggers for libc-bin (2.39-0ubuntu8.8) ...
+root@JARVIS:~# pgrep sshd
+root@JARVIS:~# pgrep sshd
+root@JARVIS:~# pwd
+/root
+root@JARVIS:~# pgrep sshd
+root@JARVIS:~# systemctl start ssh
+root@JARVIS:~# pgrep sshd
+1252
+root@JARVIS:~# pgrep -l bash
+319 bash
+391 bash
+root@JARVIS:~# sleep 1000 &
+[1] 1255
+root@JARVIS:~# pgrep sleep
+1255
+root@JARVIS:~# kill 1255
+root@JARVIS:~# pgrep sleep
+[1]+  Terminated              sleep 1000
+root@JARVIS:~# ps aux --sort+-%cpu | head -n 10
+error: unknown gnu long option
+
+Usage:
+ ps [options]
+
+ Try 'ps --help <simple|list|output|threads|misc|all>'
+  or 'ps --help <s|l|o|t|m|a>'
+ for additional help text.
+
+For more details see ps(1).
+root@JARVIS:~# ps aux --sort=-%cpu | head -n 10
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.0  0.1  22080 13488 ?        Ss   04:47   0:00 /sbin/init
+polkitd      867  0.0  0.0 308172  8072 ?        Ssl  05:37   0:00 /usr/lib/polkit-1/polkitd --no-debug
+root         862  0.0  0.1 370104 20900 ?        Ssl  05:37   0:00 /usr/libexec/packagekitd
+root         319  0.0  0.0   6728  6040 pts/0    Ss   04:47   0:00 -bash
+root         318  0.0  0.0   3200  1248 ?        S    04:47   0:00 /init
+root          54  0.0  0.1  34048 12668 ?        S<s  04:47   0:00 /usr/lib/systemd/systemd-journald
+root         220  0.0  0.1 107036 23144 ?        Ssl  04:47   0:00 /usr/bin/python3 /usr/share/unattended-upgrades/unattended-upgrade-shutdown --wait-for-signal
+root         100  0.0  0.0  25548  6928 ?        Ss   04:47   0:00 /usr/lib/systemd/systemd-udevd
+message+     173  0.0  0.0   9672  5420 ?        Ss   04:47   0:00 @dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+root@JARVIS:~# ps aux --sort=-%mem | head -n 10
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         220  0.0  0.1 107036 23144 ?        Ssl  04:47   0:00 /usr/bin/python3 /usr/share/unattended-upgrades/unattended-upgrade-shutdown --wait-for-signal
+root         862  0.0  0.1 370104 20900 ?        Ssl  05:37   0:00 /usr/libexec/packagekitd
+root           1  0.0  0.1  22080 13488 ?        Ss   04:47   0:00 /sbin/init
+systemd+     162  0.0  0.1  21344 13152 ?        Ss   04:47   0:00 /usr/lib/systemd/systemd-resolved
+root          54  0.0  0.1  34048 12668 ?        S<s  04:47   0:00 /usr/lib/systemd/systemd-journald
+root         364  0.0  0.0  20340 11524 ?        Ss   04:47   0:00 /usr/lib/systemd/systemd --user
+root         186  0.0  0.0  17980  8872 ?        Ss   04:47   0:00 /usr/lib/systemd/systemd-logind
+root        1252  0.0  0.0  12028  8348 ?        Ss   05:39   0:00 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups
+polkitd      867  0.0  0.0 308172  8072 ?        Ssl  05:37   0:00 /usr/lib/polkit-1/polkitd --no-debug
+root@JARVIS:~# free -h
+               total        used        free      shared  buff/cache   available
+Mem:            11Gi       498Mi        11Gi       3.5Mi       134Mi        11Gi
+Swap:          3.0Gi          0B       3.0Gi
+root@JARVIS:~# grep MemAvailable /proc/meminfo
+MemAvailable:   11654380 kB
+root@JARVIS:~# lscpu
+Architecture:                x86_64
+  CPU op-mode(s):            32-bit, 64-bit
+  Address sizes:             39 bits physical, 48 bits virtual
+  Byte Order:                Little Endian
+CPU(s):                      8
+  On-line CPU(s) list:       0-7
+Vendor ID:                   GenuineIntel
+  Model name:                Intel(R) Core(TM) i5-10300H CPU @ 2.50GHz
+    CPU family:              6
+    Model:                   165
+    Thread(s) per core:      2
+    Core(s) per socket:      4
+    Socket(s):               1
+    Stepping:                2
+    BogoMIPS:                4992.01
+    Flags:                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat
+                             pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm
+                              arch_perfmon rep_good nopl xtopology cpuid tsc_known_freq pni pcl
+                             mulqdq vmx ssse3 fma cx16 pdcm pcid sse4_1 sse4_2 x2apic movbe pop
+                             cnt aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch
+                              ssbd ibrs ibpb stibp ibrs_enhanced tpr_shadow ept vpid ept_ad fsg
+                             sbase bmi1 avx2 smep bmi2 erms invpcid rdseed adx smap clflushopt
+                             xsaveopt xsavec xgetbv1 xsaves vnmi md_clear flush_l1d arch_capabi
+                             lities
+Virtualization features:
+  Virtualization:            VT-x
+  Hypervisor vendor:         Microsoft
+  Virtualization type:       full
+Caches (sum of all):
+  L1d:                       128 KiB (4 instances)
+  L1i:                       128 KiB (4 instances)
+  L2:                        1 MiB (4 instances)
+  L3:                        8 MiB (1 instance)
+NUMA:
+  NUMA node(s):              1
+  NUMA node0 CPU(s):         0-7
+Vulnerabilities:
+  Gather data sampling:      Unknown: Dependent on hypervisor status
+  Ghostwrite:                Not affected
+  Indirect target selection: Mitigation; Aligned branch/return thunks
+  Itlb multihit:             KVM: Mitigation: Split huge pages
+  L1tf:                      Not affected
+  Mds:                       Not affected
+  Meltdown:                  Not affected
+  Mmio stale data:           Vulnerable: Clear CPU buffers attempted, no microcode; SMT Host st
+                             ate unknown
+  Old microcode:             Not affected
+  Reg file data sampling:    Not affected
+  Retbleed:                  Mitigation; Enhanced IBRS
+  Spec rstack overflow:      Not affected
+  Spec store bypass:         Mitigation; Speculative Store Bypass disabled via prctl
+  Spectre v1:                Mitigation; usercopy/swapgs barriers and __user pointer sanitizati
+                             on
+  Spectre v2:                Mitigation; Enhanced / Automatic IBRS; IBPB conditional; PBRSB-eIB
+                             RS SW sequence; BHI SW loop, KVM SW loop
+  Srbds:                     Unknown: Dependent on hypervisor status
+  Tsa:                       Not affected
+  Tsx async abort:           Not affected
+  Vmscape:                   Not affected
+root@JARVIS:~# df -h
+Filesystem      Size  Used Avail Use% Mounted on
+none            5.9G     0  5.9G   0% /usr/lib/modules/6.18.33.2-microsoft-standard-WSL2
+none            5.9G  4.0K  5.9G   1% /mnt/wsl
+drivers         352G  285G   68G  81% /usr/lib/wsl/drivers
+/dev/sdd       1007G  2.2G  954G   1% /
+none            5.9G   32K  5.9G   1% /mnt/wslg
+none            5.9G     0  5.9G   0% /usr/lib/wsl/lib
+rootfs          5.8G  2.8M  5.8G   1% /init
+none            5.9G  520K  5.9G   1% /run
+none            5.9G     0  5.9G   0% /run/lock
+none            5.9G     0  5.9G   0% /run/shm
+none            5.9G   80K  5.9G   1% /mnt/wslg/versions.txt
+none            5.9G   80K  5.9G   1% /mnt/wslg/doc
+C:\             352G  285G   68G  81% /mnt/c
+D:\             104G   71G   34G  68% /mnt/d
+E:\             466G  144G  323G  31% /mnt/e
+tmpfs           1.2G   20K  1.2G   1% /run/user/0
+root@JARVIS:~# df -h --output=source,avail
+Filesystem     Avail
+none            5.9G
+none            5.9G
+drivers          68G
+/dev/sdd        954G
+none            5.9G
+none            5.9G
+rootfs          5.8G
+none            5.9G
+none            5.9G
+none            5.9G
+none            5.9G
+none            5.9G
+C:\              68G
+D:\              34G
+E:\             323G
+tmpfs           1.2G
+root@JARVIS:~# df -T
+Filesystem     Type     1K-blocks      Used Available Use% Mounted on
+none           overlay    6082364         0   6082364   0% /usr/lib/modules/6.18.33.2-microsoft-standard-WSL2
+none           tmpfs      6082364         4   6082360   1% /mnt/wsl
+drivers        9p       368315716 297988204  70327512  81% /usr/lib/wsl/drivers
+/dev/sdd       ext4    1055762868   2296012 999763384   1% /
+none           tmpfs      6082364        32   6082332   1% /mnt/wslg
+none           overlay    6082364         0   6082364   0% /usr/lib/wsl/lib
+rootfs         rootfs     6076604      2772   6073832   1% /init
+none           tmpfs      6082364       520   6081844   1% /run
+none           tmpfs      6082364         0   6082364   0% /run/lock
+none           tmpfs      6082364         0   6082364   0% /run/shm
+none           overlay    6082364        80   6082284   1% /mnt/wslg/versions.txt
+none           overlay    6082364        80   6082284   1% /mnt/wslg/doc
+C:\            9p       368315716 297988204  70327512  81% /mnt/c
+D:\            9p       108542972  73566300  34976672  68% /mnt/d
+E:\            9p       488369148 150400216 337968932  31% /mnt/e
+tmpfs          tmpfs      1216472        20   1216452   1% /run/user/0
+root@JARVIS:~# mount
+none on /usr/lib/modules/6.18.33.2-microsoft-standard-WSL2 type overlay (rw,nosuid,nodev,noatime,lowerdir=/modules,upperdir=/lib/modules/6.18.33.2-microsoft-standard-WSL2/rw/upper,workdir=/lib/modules/6.18.33.2-microsoft-standard-WSL2/rw/work,uuid=on)
+none on /mnt/wsl type tmpfs (rw,relatime)
+drivers on /usr/lib/wsl/drivers type 9p (ro,nosuid,nodev,noatime,aname=drivers;fmask=222;dmask=222,cache=0x5,access=client,msize=65536,trans=fd,rfd=8,wfd=8)
+/dev/sdd on / type ext4 (rw,relatime,discard,errors=remount-ro,data=ordered)
+none on /mnt/wslg type tmpfs (rw,relatime)
+/dev/sdd on /mnt/wslg/distro type ext4 (ro,relatime,discard,errors=remount-ro,data=ordered)
+none on /usr/lib/wsl/lib type overlay (rw,nosuid,nodev,noatime,lowerdir=/gpu_lib_packaged:/gpu_lib_inbox,upperdir=/gpu_lib/rw/upper,workdir=/gpu_lib/rw/work,uuid=on)
+rootfs on /init type rootfs (ro,size=6076604k,nr_inodes=1519151)
+none on /dev type devtmpfs (rw,nosuid,relatime,size=6076604k,nr_inodes=1519151,mode=755)
+sysfs on /sys type sysfs (rw,nosuid,nodev,noexec,noatime)
+proc on /proc type proc (rw,nosuid,nodev,noexec,noatime)
+devpts on /dev/pts type devpts (rw,nosuid,noexec,noatime,gid=5,mode=620,ptmxmode=000)
+none on /run type tmpfs (rw,nosuid,nodev,mode=755)
+none on /run/lock type tmpfs (rw,nosuid,nodev,noexec,noatime)
+none on /run/shm type tmpfs (rw,nosuid,nodev,noatime)
+none on /dev/shm type tmpfs (rw,nosuid,nodev,noatime)
+none on /run/user type tmpfs (rw,nosuid,nodev,noexec,noatime,mode=755)
+binfmt_misc on /proc/sys/fs/binfmt_misc type binfmt_misc (rw,relatime)
+cgroup2 on /sys/fs/cgroup type cgroup2 (rw,nosuid,nodev,noexec,relatime,nsdelegate)
+none on /mnt/wslg/versions.txt type overlay (rw,relatime,lowerdir=/systemvhd,upperdir=/system/rw/upper,workdir=/system/rw/work,uuid=on)
+none on /mnt/wslg/doc type overlay (rw,relatime,lowerdir=/systemvhd,upperdir=/system/rw/upper,workdir=/system/rw/work,uuid=on)
+none on /tmp/.X11-unix type tmpfs (ro,relatime)
+C:\ on /mnt/c type 9p (rw,noatime,aname=drvfs;path=C:\;uid=0;gid=0;symlinkroot=/mnt/,cache=0x5,access=client,msize=65536,trans=fd,rfd=6,wfd=6)
+D:\ on /mnt/d type 9p (rw,noatime,aname=drvfs;path=D:\;uid=0;gid=0;symlinkroot=/mnt/,cache=0x5,access=client,msize=65536,trans=fd,rfd=6,wfd=6)
+E:\ on /mnt/e type 9p (rw,noatime,aname=drvfs;path=E:\;uid=0;gid=0;symlinkroot=/mnt/,cache=0x5,access=client,msize=65536,trans=fd,rfd=6,wfd=6)
+none on /run/user type tmpfs (rw,relatime)
+hugetlbfs on /dev/hugepages type hugetlbfs (rw,nosuid,nodev,relatime,pagesize=2M)
+mqueue on /dev/mqueue type mqueue (rw,nosuid,nodev,noexec,relatime)
+debugfs on /sys/kernel/debug type debugfs (rw,nosuid,nodev,noexec,relatime)
+tracefs on /sys/kernel/tracing type tracefs (rw,nosuid,nodev,noexec,relatime)
+fusectl on /sys/fs/fuse/connections type fusectl (rw,nosuid,nodev,noexec,relatime)
+configfs on /sys/kernel/config type configfs (rw,nosuid,nodev,noexec,relatime)
+tmpfs on /run/user/0 type tmpfs (rw,nosuid,nodev,relatime,size=1216472k,nr_inodes=304118,mode=700)
+tmpfs on /mnt/wslg/run/user/0 type tmpfs (rw,nosuid,nodev,relatime,size=1216472k,nr_inodes=304118,mode=700)
+root@JARVIS:~# uname -r
+6.18.33.2-microsoft-standard-WSL2
+root@JARVIS:~# cat /etc/os-release
+PRETTY_NAME="Ubuntu 24.04.4 LTS"
+NAME="Ubuntu"
+VERSION_ID="24.04"
+VERSION="24.04.4 LTS (Noble Numbat)"
+VERSION_CODENAME=noble
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=noble
+LOGO=ubuntu-logo
+root@JARVIS:~# uptime
+ 05:48:21 up  1:01,  1 user,  load average: 0.00, 0.00, 0.00
+root@JARVIS:~# user
+Command 'user' not found, did you mean:
+  command 'users' from deb coreutils (9.4-3ubuntu6.2)
+  command 'iuser' from deb ipmiutil (3.1.9-3)
+  command 'fuser' from deb psmisc (23.6-1)
+  command 'userv' from deb userv (1.2.1~beta4)
+Try: apt install <deb name>
+root@JARVIS:~# whoami
+root
+root@JARVIS:~# id
+uid=0(root) gid=0(root) groups=0(root)
+root@JARVIS:~# groups
+root
+root@JARVIS:~# sudo useradd -m devopsuser
+root@JARVIS:~# whoami
+root
+root@JARVIS:~# sudo groupadd devopsteam
+root@JARVIS:~# sudo usermod -aG devopsteam devopsuser
+root@JARVIS:~# id devopsuser
+uid=1004(devopsuser) gid=1004(devopsuser) groups=1004(devopsuser),1005(devopsteam)
+root@JARVIS:~# su - devopsuser
+Welcome to Ubuntu 24.04.4 LTS (GNU/Linux 6.18.33.2-microsoft-standard-WSL2 x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Sun Aug 23 05:51:26 UTC 2026
+
+  System load:  0.03                Processes:             32
+  Usage of /:   0.2% of 1006.85GB   Users logged in:       1
+  Memory usage: 3%                  IPv4 address for eth0: 172.20.254.74
+  Swap usage:   0%
+
+ * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+   just raised the bar for easy, resilient and secure K8s cluster deployment.
+
+   https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+
+This message is shown once a day. To disable it please create the
+/home/devopsuser/.hushlogin file.
+$ exit
+root@JARVIS:~# ip -4 addr show
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet 10.255.255.254/32 brd 10.255.255.254 scope global lo
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+    inet 172.20.254.74/20 brd 172.20.255.255 scope global eth0
+       valid_lft forever preferred_lft forever
+root@JARVIS:~#

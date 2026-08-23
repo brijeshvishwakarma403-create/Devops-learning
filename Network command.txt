@@ -1,0 +1,93 @@
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+PS C:\Users\brije> ip config
+ip : The term 'ip' is not recognized as the name of a cmdlet, function, script file, or operable
+program. Check the spelling of the name, or if a path was included, verify that the path is correct
+and try again.
+At line:1 char:1
++ ip config
++ ~~
+    + CategoryInfo          : ObjectNotFound: (ip:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS C:\Users\brije> ipconfig
+
+Windows IP Configuration
+
+
+Ethernet adapter Ethernet 3:
+
+   Connection-specific DNS Suffix  . :
+   Link-local IPv6 Address . . . . . : fe80::172:1fd3:cf55:1db5%10
+   IPv4 Address. . . . . . . . . . . : 192.168.56.1
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Default Gateway . . . . . . . . . :
+
+Wireless LAN adapter Local Area Connection* 8:
+
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . :
+
+Wireless LAN adapter Local Area Connection* 10:
+
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . :
+
+Wireless LAN adapter Wi-Fi:
+
+   Connection-specific DNS Suffix  . : lan
+   IPv6 Address. . . . . . . . . . . : 2409:40c0:23c:7f93:33b3:f694:c5a6:dd4
+   Temporary IPv6 Address. . . . . . : 2409:40c0:23c:7f93:e538:6479:18da:2c10
+   Link-local IPv6 Address . . . . . : fe80::4403:f1bd:571e:2957%13
+   IPv4 Address. . . . . . . . . . . : 192.168.31.251
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Default Gateway . . . . . . . . . : fe80::da23:e0ff:fe7b:455a%13
+                                       192.168.31.1
+
+Ethernet adapter Bluetooth Network Connection:
+
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . :
+
+Ethernet adapter Ethernet:
+
+   Media State . . . . . . . . . . . : Media disconnected
+   Connection-specific DNS Suffix  . :
+
+Ethernet adapter vEthernet (WSL (Hyper-V firewall)):
+
+   Connection-specific DNS Suffix  . :
+   Link-local IPv6 Address . . . . . : fe80::e3a4:7406:76a1:7a43%62
+   IPv4 Address. . . . . . . . . . . : 172.20.240.1
+   Subnet Mask . . . . . . . . . . . : 255.255.240.0
+   Default Gateway . . . . . . . . . :
+PS C:\Users\brije> getmac
+
+Physical Address    Transport Name
+=================== ==========================================================
+EC-2E-98-EF-95-FF   \Device\Tcpip_{581D7ED5-1DF5-43EB-8DDA-711486F2862F}
+7C-10-C9-90-7B-D1   Media disconnected
+EC-2E-98-EF-95-FE   Media disconnected
+0A-00-27-00-00-0A   \Device\Tcpip_{2BD4B9AE-9FB2-4BE5-939A-9EA8392985EF}
+PS C:\Users\brije> netsh interface show interface
+
+Admin State    State          Type             Interface Name
+-------------------------------------------------------------------------
+Enabled        Disconnected   Dedicated        Ethernet
+Enabled        Connected      Dedicated        Wi-Fi
+Enabled        Connected      Dedicated        Ethernet 3
+
+PS C:\Users\brije> ipconfig | findstr /i Default Getway
+FINDSTR: Cannot open Getway
+PS C:\Users\brije> ipconfig | findstr /i Default Gateway
+FINDSTR: Cannot open Gateway
+PS C:\Users\brije> ipconfig | findstr /i "Default Gateway"
+   Default Gateway . . . . . . . . . :
+   Default Gateway . . . . . . . . . : fe80::da23:e0ff:fe7b:455a%13
+   Default Gateway . . . . . . . . . :
+PS C:\Users\brije> ipconfig | findstr /i "Subnet Mask"
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Subnet Mask . . . . . . . . . . . : 255.255.240.0
+PS C:\Users\brije>
