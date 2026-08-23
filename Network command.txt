@@ -102,4 +102,103 @@ Ping statistics for 127.0.0.1:
     Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
 Approximate round trip times in milli-seconds:
     Minimum = 0ms, Maximum = 0ms, Average = 0ms
+
+PS C:\Users\brije> ping google.com
+
+Pinging google.com [2404:6800:4000:100e::66] with 32 bytes of data:
+Reply from 2404:6800:4000:100e::66: time=85ms
+Reply from 2404:6800:4000:100e::66: time=227ms
+Reply from 2404:6800:4000:100e::66: time=43ms
+Reply from 2404:6800:4000:100e::66: time=343ms
+
+Ping statistics for 2404:6800:4000:100e::66:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 43ms, Maximum = 343ms, Average = 174ms
+PS C:\Users\brije> nslookup
+Default Server:  dns.google
+Address:  8.8.8.8
+
+>
+PS C:\Users\brije> nslookup google.com
+Server:  dns.google
+Address:  8.8.8.8
+
+Non-authoritative answer:
+Name:    google.com
+Addresses:  2404:6800:4009:81e::200e
+          192.178.193.138
+          192.178.193.100
+          192.178.193.102
+          192.178.193.139
+          192.178.193.113
+          192.178.193.101
+
+PS C:\Users\brije> nslookup github.com
+Server:  dns.google
+Address:  8.8.8.8
+
+Non-authoritative answer:
+Name:    github.com
+Address:  20.207.73.82
+
+PS C:\Users\brije> nslookup microsoft.com
+Server:  dns.google
+Address:  8.8.8.8
+
+Non-authoritative answer:
+Name:    microsoft.com
+Addresses:  2620:1ec:bdf::48
+          2620:1ec:46::48
+          13.107.213.68
+          13.107.246.68
+
+PS C:\Users\brije> Measure-Command { Resolve-DnsName google.com }
+
+
+Days              : 0
+Hours             : 0
+Minutes           : 0
+Seconds           : 0
+Milliseconds      : 444
+Ticks             : 4442898
+TotalDays         : 5.14224305555556E-06
+TotalHours        : 0.000123413833333333
+TotalMinutes      : 0.00740483
+TotalSeconds      : 0.4442898
+TotalMilliseconds : 444.2898
+
+
+
 PS C:\Users\brije>
+PS C:\Users\brije> Measure-Command { Resolve-DnsName github.com }
+
+
+Days              : 0
+Hours             : 0
+Minutes           : 0
+Seconds           : 0
+Milliseconds      : 66
+Ticks             : 660664
+TotalDays         : 7.64657407407407E-07
+TotalHours        : 1.83517777777778E-05
+TotalMinutes      : 0.00110110666666667
+TotalSeconds      : 0.0660664
+TotalMilliseconds : 66.0664
+
+
+
+PS C:\Users\brije> Measure-Command { Resolve-DnsName microsoft.com }
+
+
+Days              : 0
+Hours             : 0
+Minutes           : 0
+Seconds           : 0
+Milliseconds      : 65
+Ticks             : 653844
+TotalDays         : 7.56763888888889E-07
+TotalHours        : 1.81623333333333E-05
+TotalMinutes      : 0.00108974
+TotalSeconds      : 0.0653844
+TotalMilliseconds : 65.3844
