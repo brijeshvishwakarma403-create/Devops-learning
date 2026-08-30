@@ -1,0 +1,356 @@
+Task 1: Check Voting Eligibility
+
+root@JARVIS:~# nano age.sh
+root@JARVIS:~# cat age.sh
+
+#!/bin/bash
+
+read -p "Enter your age: " AGE
+
+if [[ $AGE -ge 18 ]]; then
+    echo "Eligible to Vote"
+else
+    echo "Not Eligible to Vote"
+fi
+root@JARVIS:~# ./age.sh
+Enter your age: 26
+Eligible to Vote
+root@JARVIS:~#
+
+=======================================
+Task 2: Check Positive, Negative, or Zero
+
+root@JARVIS:~# nano check.sh
+root@JARVIS:~# cat check.sh
+#!/bin/bash
+
+read -p "Enter a number" NUM
+
+if [[ $NUM -gt 0 ]]; then
+     echo "Positive Number"
+elif [[ $NUM -lt 0 ]]; then
+     echo "Negative Number"
+else
+     echo "Zero"
+fi
+root@JARVIS:~# ./check.sh
+Enter a number12
+Positive Number
+root@JARVIS:~# -11
+-11: command not found
+root@JARVIS:~# ./check.sh
+Enter a number-11
+Negative Number
+root@JARVIS:~# ./check.sh
+Enter a number0
+Zero
+
+========================================
+Task 3: Check File Existence
+
+root@JARVIS:~# nano File.sh
+root@JARVIS:~# cat File.sh
+#!/bin/bash
+
+read -p "Enter file name: " FILENAME
+
+if [[ -f "$FILENAME" ]]; then
+    echo "File exists"
+else
+    echo "File does not exists"
+fi
+root@JARVIS:~# ./File.sh
+Enter file name: Brij.txt
+File does not exists
+root@JARVIS:~# ./File.sh
+Enter file name: file2.txt
+File exists
+
+=======================================
+Task 4: Create Multiple Directories
+
+root@JARVIS:~# cat multi.sh
+#!/bin/bash
+
+for dir in Development Testing Staging Production
+ do
+    echo "Directory $dir created"
+done
+root@JARVIS:~# chmod +x multi.sh
+root@JARVIS:~# ./multi.sh
+Directory Development created
+Directory Testing created
+Directory Staging created
+Directory Production created
+
+=======================================
+Task 5: Print Numbers
+
+root@JARVIS:~# cat numbers.sh
+#!/bin/bash
+
+echo "Print Numbers between 1 to 10."
+for i in {1..10}
+do
+   echo "$i"
+done
+
+echo "Print Only even numbers between 1 to 20."
+for i in {1..20}
+do
+  if (( i % 2 == 0 )); then
+   echo "$i"
+  fi
+done
+root@JARVIS:~# chmod +x numbers.sh
+root@JARVIS:~# ./numbers.sh
+Print Numbers between 1 to 10.
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+Print Only even numbers between 1 to 20.
+2
+4
+6
+8
+10
+12
+14
+16
+18
+20
+
+========================================
+Task 6: Check Multiple Servers
+
+root@JARVIS:~# cat ping.sh
+#!/bin/bash
+
+for server in google.com github.com microsoft.com
+do
+  if ping -c 2 $server &> /dev/null; then
+     echo "$server is reachable"
+  else
+     echo "$server is not reachable"
+  fi
+done
+root@JARVIS:~# chmod +x ping.sh
+root@JARVIS:~# ./ping.sh
+google.com is reachable
+github.com is reachable
+microsoft.com is not reachable
+
+===========================================
+Task 7: Find Files by Extension
+
+root@JARVIS:~# cat log.sh
+#!/bin/bash
+
+for FILE in *.log
+do
+    echo "File: $FILE"
+    du -h "$FILE" | awk '{print "Size: " $1}'
+done
+
+root@JARVIS:~# chmod +x log.sh
+root@JARVIS:~# ./log.sh
+File: file1.log
+Size: 4.0K
+File: file2.log
+Size: 4.0K
+File: file3.log
+Size: 4.0K
+File: test.log
+Size: 0
+
+===========================================
+Task 8: Countdown Using while Loop
+
+root@JARVIS:~# cat countdown.sh
+#!/bin/bash
+
+i=10
+while [ $i -ge 1 ]
+do
+   echo "$i"
+   sleep 3
+   ((i--))
+done
+   echo "Happy New Year"
+root@JARVIS:~# chmod +x countdown.sh
+root@JARVIS:~# ./countdown.sh
+10
+9
+8
+7
+6
+5
+4
+3
+2
+1
+
+========================================
+Task 9: Keep Asking Until Correct Password
+
+root@JARVIS:~# cat pass.sh
+#!/bin/bash
+
+var="admin123"
+
+read -p "Enter the password: " PASS
+
+while [[ "$PASS" != "$var" ]]
+do
+  read -p "Incorrect. Enter password again: " PASS
+done
+
+echo "Access Granted"
+root@JARVIS:~# chmod +x pass.sh
+root@JARVIS:~# ./pass.sh
+Enter the password: ABcd123
+Incorrect. Enter password again: ADMIN123
+Incorrect. Enter password again: admin123
+Access Granted
+
+=========================================
+Task 10: Monitor Disk Usage
+
+root@JARVIS:~# cat d_usage.sh
+
+#!/bin/bash
+
+for DRIVE in /mnt/c /mnt/d /mnt/e
+do
+    usage=$(df -h "$DRIVE" |tail -1 | awk '{print $5}'| tr -d '%')
+      echo "Drive $DRIVE Usage: $usage%"
+
+    if [[ $usage -gt 80 ]]; then
+      echo "WARNING: Disk usage is above 80%"
+    else
+      echo "Disk usage is normal"
+    fi
+done
+root@JARVIS:~# chmod +x d_usage.sh
+root@JARVIS:~# ./d_usage.sh
+Drive /mnt/c Usage: 83%
+WARNING: Disk usage is above 80%
+Drive /mnt/d Usage: 47%
+Disk usage is normal
+Drive /mnt/e Usage: 31%
+Disk usage is normal
+
+=======================================
+Challenge Task: Simple Server Monitoring Script
+
+root@JARVIS:~# cat service.sh
+
+#!/bin/bash
+
+read -p "Enter the service name: " SERVICE
+while true
+do
+
+   if systemctl is-active "$SERVICE"; then
+      echo "Service is running"
+   else
+      echo "Service is stopped"
+   fi
+
+   for (( i=30; i>0; i-- ))
+   do
+      echo -ne "Next check in: $i seconds \r"
+   sleep 1
+   done
+      echo -ne "\n"
+done
+
+root@JARVIS:~# chmod +x service.sh
+
+root@JARVIS:~# ./service.sh
+Enter the service name: nginx
+inactive
+Service is stopped
+Next check in: 26 seconds
+root@JARVIS:~# ./service.sh
+Enter the service name: cron.service
+active
+Service is running
+Next check in: 21 seconds
+
+=============================
+Final Combined Assignment: Build a Simple System Health Checker
+
+root@JARVIS:~# chmod +x health_checker.sh
+root@JARVIS:~# cat health_checker.sh
+#!/bin/bash
+read -p "Enter service name to monitor: " SERVICE
+
+echo "Monitoring started. Press Ctrl + c to Stop."
+echo "---------------------------------------------"
+
+while true
+do
+   for DRIVE in /mnt/c /mnt/d /mnt/e
+   do
+     ls "$DRIVE" &> /dev/null
+     if [[ ! -d "$DRIVE" ]]; then
+      echo "Drive $DRIVE not found - skipping"
+      continue
+     fi
+
+   USAGE=$(df -h "$DRIVE" | tail -1 | awk '{print $5}' | tr -d '%')
+
+     if [[ $USAGE -ge 80 ]]; then
+      echo "CRITICAL: Disk usage is at (${USAGE}%)"
+     else
+      echo "Disk is normal (${USAGE}%)"
+     fi
+   done
+
+   echo "---------------------------------------"
+
+   if systemctl is-active --quiet "$SERVICE"; then
+      echo "Service '$SERVICE' is running"
+   else
+      echo "Service '$SERVICE' is stopped"
+   fi
+
+   echo "---------------------------------------"
+
+   for (( i=60; i>0; i--))
+   do
+   echo -ne "Next check in: $i seconds \r"
+   sleep 1
+   done
+   echo -ne "\n"
+done
+root@JARVIS:~# ./health_checker.sh
+Enter service name to monitor: nginx
+Monitoring started. Press Ctrl + c to Stop.
+---------------------------------------------
+CRITICAL: Disk usage is at (83%)
+Disk is normal (47%)
+Disk is normal (31%)
+---------------------------------------
+Service 'nginx' is stopped
+---------------------------------------
+^Cxt check in: 57 seconds
+root@JARVIS:~# ./health_checker.sh
+Enter service name to monitor: cron.service
+Monitoring started. Press Ctrl + c to Stop.
+---------------------------------------------
+CRITICAL: Disk usage is at (83%)
+Disk is normal (47%)
+Disk is normal (31%)
+---------------------------------------
+Service 'cron.service' is running
+---------------------------------------
+Next check in: 25 seconds
