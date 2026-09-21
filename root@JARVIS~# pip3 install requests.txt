@@ -1,0 +1,172 @@
+root@JARVIS:~# pip3 install requests
+root@JARVIS:~# pip3 show requests
+Name: requests
+Version: 2.31.0
+Summary: Python HTTP for Humans.
+Home-page: https://requests.readthedocs.io
+Author: Kenneth Reitz
+Author-email: me@kennethreitz.org
+License: Apache 2.0
+Location: /usr/lib/python3/dist-packages
+Requires:
+Required-by:
+
+====================================================
+
+root@JARVIS:~/linux_practice/python_practice# cat api_posts_task.py
+
+#!/usr/bin/env python3
+
+# Importing Library
+
+import requests
+
+url = "https://jsonplaceholder.typicode.com/posts"
+
+# Checking that url is responsive or not
+# then only move forward.
+
+first_part_success = False
+
+# Printing Status Code.
+try:
+    response = requests.get(url, timeout=10)
+    print("status_code: ", response.status_code)
+
+    response.raise_for_status()
+
+    posts = response.json()
+
+# Using for loop to print 5 post data.
+
+    for post in posts[:5]:
+        print("Post ID:", post["id"])
+        print("User ID:", post["userId"])
+        print("Title:", post["title"])
+        print("Body:", post["body"])
+        print("---------------------")
+
+# checking if it is successful or failed.
+        first_part_success = True
+
+except requests.exceptions.RequestException as err:
+    print("Error:", err)
+
+
+"""Additional Task using
+if condition to move ahead only
+if first part of code is executed successfully."""
+
+if first_part_success:
+
+    post_id = input("Enter the post id ")
+    url2 = "https://jsonplaceholder.typicode.com/posts/" + post_id
+
+    try:
+        response2 = requests.get(url2, timeout=10)
+        print("Status Code:", response2.status_code)
+
+        response2.raise_for_status()
+
+        post = response2.json()
+        print("Post ID:", post["id"])
+        print("User ID:", post["userId"])
+        print("Title:", post["title"])
+        print("Body:", post["body"])
+
+    except requests.exceptions.RequestException as err:
+        print("Error:", err)
+
+print("------------------------------------------------------")
+
+# Now let's try to post data in the table
+
+response3 = requests.post("https://jsonplaceholder.typicode.com/posts",
+    json={"title": "Brijesh", "body": "Testing post method", "userId": 1}
+)
+print("Status Code:", response3.status_code)
+print(response3.text, "\n" + "POST Successful")
+
+print("------------------------------------------------------")
+
+# using PUT method to update the data
+
+response3 = requests.put("https://jsonplaceholder.typicode.com/posts/11",
+    json={"title": "UBrijesh", "body": "UTesting post method", "userId": 11})
+print("Status Code:", response3.status_code)
+print("PUT operation successful")
+
+print("------------------------------------------------------")
+
+# Using DELETE method to delete the data
+response3 = requests.delete("https://jsonplaceholder.typicode.com/posts/1")
+print("Status Code:", response3.status_code)
+print("DELETE Successful")
+print("------------------------------------------------------")
+root@JARVIS:~/linux_practice/python_practice# ./api_posts_task.py
+status_code:  200
+Post ID: 1
+User ID: 1
+Title: sunt aut facere repellat provident occaecati excepturi optio reprehenderit
+Body: quia et suscipit
+suscipit recusandae consequuntur expedita et cum
+reprehenderit molestiae ut ut quas totam
+nostrum rerum est autem sunt rem eveniet architecto
+---------------------
+Post ID: 2
+User ID: 1
+Title: qui est esse
+Body: est rerum tempore vitae
+sequi sint nihil reprehenderit dolor beatae ea dolores neque
+fugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis
+qui aperiam non debitis possimus qui neque nisi nulla
+---------------------
+Post ID: 3
+User ID: 1
+Title: ea molestias quasi exercitationem repellat qui ipsa sit aut
+Body: et iusto sed quo iure
+voluptatem occaecati omnis eligendi aut ad
+voluptatem doloribus vel accusantium quis pariatur
+molestiae porro eius odio et labore et velit aut
+---------------------
+Post ID: 4
+User ID: 1
+Title: eum et est occaecati
+Body: ullam et saepe reiciendis voluptatem adipisci
+sit amet autem assumenda provident rerum culpa
+quis hic commodi nesciunt rem tenetur doloremque ipsam iure
+quis sunt voluptatem rerum illo velit
+---------------------
+Post ID: 5
+User ID: 1
+Title: nesciunt quas odio
+Body: repudiandae veniam quaerat sunt sed
+alias aut fugiat sit autem sed est
+voluptatem omnis possimus esse voluptatibus quis
+est aut tenetur dolor neque
+---------------------
+Enter the post id 3
+Status Code: 200
+Post ID: 3
+User ID: 1
+Title: ea molestias quasi exercitationem repellat qui ipsa sit aut
+Body: et iusto sed quo iure
+voluptatem occaecati omnis eligendi aut ad
+voluptatem doloribus vel accusantium quis pariatur
+molestiae porro eius odio et labore et velit aut
+------------------------------------------------------
+Status Code: 201
+{
+  "title": "Brijesh",
+  "body": "Testing post method",
+  "userId": 1,
+  "id": 101
+}
+POST Successful
+------------------------------------------------------
+Status Code: 200
+PUT operation successful
+------------------------------------------------------
+Status Code: 200
+DELETE Successful
+------------------------------------------------------
